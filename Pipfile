@@ -1,0 +1,30 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+name = "pypi"
+verify_ssl = true
+
+[requires]
+python_version = "3.6"
+
+[dev-packages]
+"flake8" = "*"
+qrcode = "*"
+django-extensions = "*"
+mkdocs = "*"
+mkdocs-material = "*"
+black = "==19.10b0"
+
+[packages]
+django = ">=1.11,<1.12"
+pillow = "*"
+requests = "*"
+django-taggit = "*"
+django-braces = "*"
+django-compressor = "*"
+mock = "*"
+gunicorn = "*"
+djangorestframework = "*"
+markdown = "*"
+django-filter = "*"
+coreapi = "*"
+psycopg2-binary = "*"
