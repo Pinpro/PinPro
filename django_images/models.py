@@ -14,7 +14,7 @@ except ImportError:
     from django.utils.importlib import import_module
 
 from . import utils
-from .utils import add_text_to_image
+from .utils import add_watermark
 from pinry.settings.base import DOMAIN, WATER_MARK
 from .settings import IMAGE_SIZES, IMAGE_PATH, IMAGE_AUTO_DELETE
 from PIL import Image as PilImage
@@ -70,7 +70,7 @@ class Image(models.Model):
 
     def save(self, *args, **kwargs):
         if WATER_MARK:
-            img = add_text_to_image(PilImage.open(self.image), DOMAIN)
+            img = add_watermark(PilImage.open(self.image), DOMAIN)
             if img.mode in ("RGBA", "P"):
                 img = img.convert("RGB")
             output = BytesIO()

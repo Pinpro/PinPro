@@ -2,7 +2,7 @@ from contextlib import contextmanager
 from io import BytesIO
 import PIL
 from PIL import Image, ImageDraw, ImageFont
-from pinry.settings.base import DOMAIN, WATER_MARK, FONT_PATH
+from pinry.settings.base import FONT_PATH
 
 @contextmanager
 def open_django_file(fieldfile):
@@ -138,16 +138,27 @@ def write_image_in_memory(img):
     return buf
 
 
-font = ImageFont.truetype(FONT_PATH, 24)
+font_size = 24
+
+watermark_font = ImageFont.truetype(FONT_PATH, font_size)
 
 
-def add_text_to_image(image, text, font=font):
+def add_watermark(image, text, font=watermark_font):
     """
-    :param image:
-    :param text:
-    :param font:
-    :return:
-    """
+       Add a watermark to the pin.
+
+       :param image: Source image file
+       :type image : :class:`PIL.Image`
+
+       :param text: The text of watermark
+       :type text: String
+
+       :param font: font type
+       :type font: font
+
+       :return: Image with watermark
+       :rtype: class:`PIL.Image`
+       """
     rgba_image = image.convert('RGBA')
     text_overlay = Image.new('RGBA', rgba_image.size, (255, 255, 255, 0))
     image_draw = ImageDraw.Draw(text_overlay)
@@ -157,9 +168,9 @@ def add_text_to_image(image, text, font=font):
     print(rgba_image)
     text_xy = (rgba_image.size[0] - text_size_x, rgba_image.size[1] - text_size_y)
     # 设置文本颜色和透明度
-    image_draw.text(text_xy, text, font=font, fill=(76, 234, 124, 180))
+    image_draw.text(text_xy, text, font=font, fill=(128, 128, 128, 180))
 
-    image_with_text = Image.alpha_composite(rgba_image, text_overlay)
+    image_with_watermark = Image.alpha_composite(rgba_image, text_overlay)
 
-    return image_with_text
+    return image_with_watermark
 
