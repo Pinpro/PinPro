@@ -5,6 +5,7 @@ from io import BytesIO
 from django.conf import settings
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
+from db.base_model import BaseModel
 from django.dispatch import receiver
 
 from django_images.models import Image as BaseImage, Thumbnail
@@ -12,7 +13,7 @@ from taggit.managers import TaggableManager
 # 这个是用来在后台显示缩略图用
 from django.utils.html import format_html
 
-from users.models import User
+from users.models import UserInfo
 
 
 class ImageManager(models.Manager):
@@ -72,17 +73,16 @@ class Image(BaseImage):
 
 
 
-class Board(models.Model):
+class Board(BaseModel):
     class Meta:
         unique_together = ("submitter", "name")
         index_together = ("submitter", "name")
 
-    submitter = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    submitter = models.ForeignKey(UserInfo, on_delete=models.DO_NOTHING)
     name = models.CharField(max_length=128, blank=False, null=False)
     private = models.BooleanField(default=False, blank=False)
     pins = models.ManyToManyField("Pin", related_name="pins", blank=True)
 
-    published = models.DateTimeField(auto_now_add=True)
 
     def image_data(self):
         return format_html(
@@ -96,15 +96,14 @@ class Board(models.Model):
 
 
 
-class Pin(models.Model):
-    submitter = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name='创建时间')
+class Pin(BaseModel):
+    submitter = models.ForeignKey(UserInfo, on_delete=models.DO_NOTHING, verbose_name='创建人')
     private = models.BooleanField(default=False, blank=False)
     url = models.CharField(null=True, blank=True, max_length=256)
     referer = models.CharField(null=True, blank=True, max_length=256)
     description = models.TextField(blank=True, null=True)
     image = models.ForeignKey(Image, on_delete=models.DO_NOTHING, related_name='pin')
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='pin_likes')
-    published = models.DateTimeField(auto_now_add=True)
     tags = TaggableManager()
 
     def tag_list(self):

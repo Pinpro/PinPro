@@ -22,4 +22,10 @@ export default {
   .body {
     font-family: 'Open Sans', sans-serif;
   }
+  a:link{
+    color:rgb(0, 255, 98);
+  }
+  a:hover,a:active,a:visted{
+    color:white;
+  }
 </style>

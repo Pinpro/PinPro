@@ -7,7 +7,7 @@ from taggit.models import Tag
 from core.models import Image, Board
 from core.models import Pin
 from django_images.models import Thumbnail
-from users.models import User
+from users.models import UserInfo
 from users.serializers import UserSerializer
 
 
@@ -29,7 +29,7 @@ def filter_private_board(request, query):
 
 class LikedSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = UserInfo
         fields = ('id', 'username')
 
 

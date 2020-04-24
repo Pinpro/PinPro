@@ -1,6 +1,6 @@
 import re
 
-from users.models import User
+from users.models import UserInfo
 
 
 email_re = re.compile(
@@ -18,13 +18,13 @@ class CombinedAuthBackend(object):
     def authenticate(self, username=None, password=None):
         is_email = email_re.match(username)
         if is_email:
-            qs = User.objects.filter(email=username)
+            qs = UserInfo.objects.filter(email=username)
         else:
-            qs = User.objects.filter(username=username)
+            qs = UserInfo.objects.filter(username=username)
 
         try:
             user = qs.get()
-        except User.DoesNotExist:
+        except UserInfo.DoesNotExist:
             return None
         if user.check_password(password):
             return user
@@ -32,6 +32,6 @@ class CombinedAuthBackend(object):
 
     def get_user(self, user_id):
         try:
-            return User.objects.get(pk=user_id)
-        except User.DoesNotExist:
+            return UserInfo.objects.get(pk=user_id)
+        except UserInfo.DoesNotExist:
             return None

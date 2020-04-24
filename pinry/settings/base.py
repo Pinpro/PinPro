@@ -24,6 +24,8 @@ INSTALLED_APPS = [
     'users',
 ]
 
+AUTH_USER_MODEL = 'users.UserInfo'
+
 ROOT_URLCONF = 'pinry.urls'
 
 MIDDLEWARE_CLASSES = [

@@ -10,7 +10,7 @@ from core import serializers as api
 from core.models import Image, Pin, Board
 from core.permissions import IsOwnerOrReadOnly, OwnerOnlyIfPrivate
 from core.serializers import filter_private_pin, filter_private_board
-from users.models import User
+from users.models import UserInfo
 
 
 class ImageViewSet(mixins.CreateModelMixin, GenericViewSet):
@@ -22,7 +22,7 @@ class ImageViewSet(mixins.CreateModelMixin, GenericViewSet):
 
 
 class UsersViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = UserInfo.objects.all()
     serializer_class = api.UserSerializer
     ordering = ('-id', )
 

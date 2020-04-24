@@ -13,7 +13,7 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.viewsets import GenericViewSet
 
 from core.serializers import UserSerializer
-from users.models import User
+from users.models import UserInfo
 
 
 def reverse_lazy(name=None, *args):
@@ -41,8 +41,8 @@ class UserViewSet(
 
     def get_queryset(self):
         if self.request.user.is_anonymous:
-            return User.objects.none()
-        return User.objects.filter(id=self.request.user.id)
+            return UserInfo.objects.none()
+        return UserInfo.objects.filter(id=self.request.user.id)
 
 
 def login_user(request):
