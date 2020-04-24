@@ -140,13 +140,13 @@ IMAGE_SIZES = {
     'square': {'crop': True, 'size': [125, 125]},
 }
 
-FONT_PATH = '/static/arial.ttf'
+FONT_PATH = os.path.join(BASE_DIR, 'pinry/static/font/arial.ttf')
 
 # Change the domain to your own site.
 DOMAIN = "www.2zzy.com"
 
 # Enable watermark or not. Default is False
-WATER_MARK = False
+WATER_MARK = True
 
 # IS_TEST is a variable to mark if the test is running
 IS_TEST = False
