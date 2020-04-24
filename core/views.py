@@ -10,6 +10,7 @@ from core import serializers as api
 from core.models import Image, Pin, Board
 from core.permissions import IsOwnerOrReadOnly, OwnerOnlyIfPrivate
 from core.serializers import filter_private_pin, filter_private_board
+from users.models import User
 
 
 class ImageViewSet(mixins.CreateModelMixin, GenericViewSet):
@@ -18,6 +19,12 @@ class ImageViewSet(mixins.CreateModelMixin, GenericViewSet):
 
     def create(self, request, *args, **kwargs):
         return super(ImageViewSet, self).create(request, *args, **kwargs)
+
+
+class UsersViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = api.UserSerializer
+    ordering = ('-id', )
 
 
 class PinViewSet(viewsets.ModelViewSet):
@@ -79,6 +86,7 @@ class TagAutoCompleteViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
 
 drf_router = routers.DefaultRouter()
 drf_router.register(r'pins', PinViewSet, basename="pin")
+drf_router.register(r'users', UsersViewSet, basename="users")
 drf_router.register(r'images', ImageViewSet)
 drf_router.register(r'boards', BoardViewSet, basename="board")
 drf_router.register(r'tags-auto-complete', TagAutoCompleteViewSet)

@@ -7,6 +7,7 @@ from taggit.models import Tag
 from core.models import Image, Board
 from core.models import Pin
 from django_images.models import Thumbnail
+from users.models import User
 from users.serializers import UserSerializer
 
 
@@ -24,6 +25,12 @@ def filter_private_board(request, query):
     else:
         query = query.exclude(private=True)
     return query
+
+
+class LikedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username')
 
 
 class ThumbnailSerializer(serializers.HyperlinkedModelSerializer):
@@ -85,6 +92,7 @@ class TagSerializer(serializers.SlugRelatedField):
 
 
 class PinSerializer(serializers.HyperlinkedModelSerializer):
+
     class Meta:
         model = Pin
         fields = (
@@ -97,6 +105,7 @@ class PinSerializer(serializers.HyperlinkedModelSerializer):
             "referer",
             "image",
             "image_by_id",
+            "likes",
             "tags",
         )
 
@@ -112,7 +121,7 @@ class PinSerializer(serializers.HyperlinkedModelSerializer):
         write_only=True,
         required=False,
     )
-
+    likes = LikedSerializer(read_only=True, many=True)
     def create(self, validated_data):
         if 'url' not in validated_data and\
                 'image_by_id' not in validated_data:
