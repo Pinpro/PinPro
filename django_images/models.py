@@ -15,9 +15,11 @@ except ImportError:
 
 from . import utils
 from .utils import add_watermark
+from django.utils.html import format_html
 from pinry.settings.base import DOMAIN, WATER_MARK
 from .settings import IMAGE_SIZES, IMAGE_PATH, IMAGE_AUTO_DELETE
 from PIL import Image as PilImage
+
 
 def hashed_upload_to(instance, filename, **kwargs):
     image_type = 'original' if isinstance(instance, Image) else 'thumbnail'
@@ -56,6 +58,17 @@ class Image(models.Model):
                               max_length=255)
     height = models.PositiveIntegerField(default=0, editable=False)
     width = models.PositiveIntegerField(default=0, editable=False)
+
+    def __str__(self):
+        # 这里的目的是为了在admin的多对多字段返回图片ID
+        return str(self.id)
+
+    def image_data(self):
+        # 这里是为了在admin的PIN里面图片显示原始图片 而不是url
+        return format_html(
+            '<img src="/static/media/{}" width="100px"/>',
+            self.image,
+        )
 
     def get_by_size(self, size):
         return self.thumbnail_set.get(size=size)
@@ -131,6 +144,13 @@ class Thumbnail(models.Model):
 
     def get_absolute_url(self):
         return self.image.url
+
+    def image_data(self):
+        # 这里是为了在admin的Thumbnail里面图片显示原始图片 而不是url
+        return format_html(
+            '<img src="/static/media/{}" width="100px"/>',
+            self.original.image,
+        )
 
 
 @receiver(models.signals.post_save)

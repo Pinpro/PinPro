@@ -84,9 +84,16 @@ class Board(models.Model):
 
     published = models.DateTimeField(auto_now_add=True)
 
+    def image_data(self):
+        return format_html(
+            '<img src="/static/media/{}" width="100px"/>',
+            self.pins.image,
+        )
+
     class Meta:
         ordering = ('-published',)
         verbose_name_plural = '分类'
+
 
 
 class Pin(models.Model):
@@ -96,6 +103,7 @@ class Pin(models.Model):
     referer = models.CharField(null=True, blank=True, max_length=256)
     description = models.TextField(blank=True, null=True)
     image = models.ForeignKey(Image, on_delete=models.DO_NOTHING, related_name='pin')
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='pin_likes')
     published = models.DateTimeField(auto_now_add=True)
     tags = TaggableManager()
 
@@ -103,6 +111,7 @@ class Pin(models.Model):
         return self.tags.all()
 
     def image_data(self):
+        # 这里是为了在admin的PIN里面图片显示原始图片 而不是url
         return format_html(
             '<img src="/static/media/{}" width="100px"/>',
             self.image.image,
@@ -110,6 +119,10 @@ class Pin(models.Model):
 
     def __unicode__(self):
         return '%s - %s' % (self.submitter, self.published)
+
+    def __str__(self):
+        # 这里的目的是为了在admin的多对多字段返回图片ID
+        return str(self.image.id)
 
     class Meta:
         ordering = ('-published',)
