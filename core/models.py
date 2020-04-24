@@ -122,7 +122,7 @@ class Pin(models.Model):
 
     def __str__(self):
         # 这里的目的是为了在admin的多对多字段返回图片ID
-        return str(self.image.id)
+        return str(self.id)
 
     class Meta:
         ordering = ('-published',)
