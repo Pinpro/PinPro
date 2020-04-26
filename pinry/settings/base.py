@@ -142,7 +142,7 @@ IMAGE_SIZES = {
     'square': {'crop': True, 'size': [125, 125]},
 }
 
-FONT_PATH = os.path.join(BASE_DIR, 'pinry/static/font/arial.ttf')
+FONT_PATH = os.path.join(BASE_DIR, 'pinry/static/font/good times rg.ttf')
 
 # Change the domain to your own site.
 DOMAIN = "www.2zzy.com"
