@@ -36,7 +36,7 @@ class UserInfo(AbstractUser, BaseModel):
     )
 
     birthday = models.DateField(null=True, blank=True, verbose_name="出生年月")
-    gender = models.SmallIntegerField(max_length=6, choices=GENDER_TYPE, default="0", verbose_name="性别")
+    gender = models.SmallIntegerField(choices=GENDER_TYPE, default="0", verbose_name="性别")
     location = models.CharField(max_length=30, null=True, blank=True, default="", verbose_name="所在城市")
     mobile = models.CharField(max_length=11, null=True, blank=True, default="", verbose_name="电话")
     blood = models.SmallIntegerField(default=0, choices=BLOOD_TYPE, verbose_name='血型')
@@ -53,20 +53,3 @@ class UserInfo(AbstractUser, BaseModel):
 
     def __str__(self):
         return self.username
-
-    # @property
-    # def gravatar(self):
-    #     return hashlib.md5(self.email.encode('utf-8')).hexdigest()
-    #
-    # class Meta:
-    #     proxy = True
-
-
-# class ProxyUser(BaseUser):
-#
-#     @property
-#     def gravatar(self):
-#         return hashlib.md5(self.email.encode('utf-8')).hexdigest()
-#     #
-#     # class Meta:
-#     #     proxy = True
