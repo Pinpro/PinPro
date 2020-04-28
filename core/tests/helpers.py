@@ -5,14 +5,14 @@ from django_images.models import Thumbnail
 from taggit.models import Tag
 
 from core.models import Pin, Image
-from users.models import User
+from users.models import UserInfo
 
 
 TEST_IMAGE_PATH = 'docs/src/imgs/logo-dark.png'
 
 
 def create_user(username):
-    user, _ = User.objects.get_or_create(
+    user, _ = UserInfo.objects.get_or_create(
         username='user_{}'.format(username),
         defaults={
             "email": 'user_{}@example.com'.format(username)
