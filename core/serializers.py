@@ -11,11 +11,21 @@ from users.models import UserInfo
 from users.serializers import UserSerializer
 
 
-def filter_private_pin(request, query):
+# def filter_private_pin(request, query):
+#     if request.user.is_authenticated:
+#         query = query.exclude(~Q(submitter=request.user), private=True)
+#     else:
+#         query = query.exclude(private=True)
+#     return query.select_related('image', 'submitter')
+
+# 过滤器: 如果用户登陆了 【排除】掉其他用户的私人pin和其他用户未审核的pin
+#        如果用户没登陆，【排除】掉所有的私人pin然后【留下】审核通过的pin
+def filter_unchecked_and_private_pin(request, query):
     if request.user.is_authenticated:
-        query = query.exclude(~Q(submitter=request.user), private=True)
+        query = query.exclude(~Q(submitter=request.user), private=True).\
+            exclude(~Q(submitter=request.user), check=0)
     else:
-        query = query.exclude(private=True)
+        query = query.exclude(private=True).filter(check=1)
     return query.select_related('image', 'submitter')
 
 
@@ -98,6 +108,7 @@ class PinSerializer(serializers.HyperlinkedModelSerializer):
         fields = (
             settings.DRF_URL_FIELD_NAME,
             "private",
+            "check",
             "id",
             "submitter",
             "url",
@@ -122,6 +133,7 @@ class PinSerializer(serializers.HyperlinkedModelSerializer):
         required=False,
     )
     likes = LikedSerializer(read_only=True, many=True)
+
     def create(self, validated_data):
         if 'url' not in validated_data and\
                 'image_by_id' not in validated_data:
