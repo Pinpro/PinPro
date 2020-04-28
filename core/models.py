@@ -72,7 +72,6 @@ class Image(BaseImage):
         )
 
 
-
 class Board(BaseModel):
     class Meta:
         unique_together = ("submitter", "name")
@@ -82,7 +81,6 @@ class Board(BaseModel):
     name = models.CharField(max_length=128, blank=False, null=False)
     private = models.BooleanField(default=False, blank=False)
     pins = models.ManyToManyField("Pin", related_name="pins", blank=True)
-
 
     def image_data(self):
         return format_html(
@@ -95,10 +93,15 @@ class Board(BaseModel):
         verbose_name_plural = '分类'
 
 
-
 class Pin(BaseModel):
+    CHECK_STATUS = (
+        (0, "未审核"),
+        (1, "已审核"),
+        (2, "未通过审核")
+    )
     submitter = models.ForeignKey(UserInfo, on_delete=models.DO_NOTHING, verbose_name='创建人')
     private = models.BooleanField(default=False, blank=False)
+    check = models.IntegerField(choices=CHECK_STATUS, default=0, verbose_name="PIN是否通过审核")
     url = models.CharField(null=True, blank=True, max_length=256)
     referer = models.CharField(null=True, blank=True, max_length=256)
     description = models.TextField(blank=True, null=True)
