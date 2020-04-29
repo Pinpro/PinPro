@@ -3,8 +3,8 @@ from django.contrib import admin
 from .models import Pin, Board
 
 # 自定义管理站点的名称和URL标题
-admin.site.site_header = '网站管理'
-admin.site.site_title = '2zzy后台管理'
+admin.site.site_header = 'PinPro Admin'
+admin.site.site_title = 'PinPro Admin'
 
 
 class PinAdmin(admin.ModelAdmin):
