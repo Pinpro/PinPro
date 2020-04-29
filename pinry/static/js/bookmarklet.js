@@ -63,7 +63,7 @@
             textAlign: 'center',
             fontSize: '22px'
         });
-        pinryBar.textContent = 'Pinry Bookmarklet';
+        pinryBar.textContent = 'Click this bar will close';
         pinryBar.onclick = closePinry;
         pinryImages.appendChild(pinryBar);
         document.body.appendChild(pinryImages);

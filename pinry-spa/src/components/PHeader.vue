@@ -17,7 +17,7 @@
         </div>
         <div id="PinryNav" class="navbar-menu" :class="{ 'is-active': active}">
           <div class="navbar-start">
-            <a class="navbar-item" :href="bookmarklet">
+            <a class="navbar-item" :href="bookmarklet" :title="explanation">
               Bookmarklet
             </a>
             <div
@@ -124,6 +124,7 @@ export default {
         loggedIn: false,
         meta: {},
       },
+      explanation: '拖动此处到书签中，然后在有图的页面点击书签',
     };
   },
   computed: {
