@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'django_images',
     'core',
     'users',
+    'user_operation',
 ]
 
 AUTH_USER_MODEL = 'users.UserInfo'

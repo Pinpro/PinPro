@@ -11,6 +11,7 @@ from core import serializers as api
 from core.models import Image, Pin, Board
 from core.permissions import IsOwnerOrReadOnly, OwnerOnlyIfPrivate
 from core.serializers import filter_unchecked_and_private_pin, filter_private_board
+from user_operation.views import UserLikesViewset
 from users.models import UserInfo
 
 
@@ -86,8 +87,20 @@ class TagAutoCompleteViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
         )
 
 
+# class LikeViewSet(mixins.UpdateModelMixin, viewsets.GenericViewSet):
+#     serializer_class = api.LikeSerializer
+#     # filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
+#     # search_fields = ("name", )
+#     permission_classes = [IsOwnerOrReadOnly("submitter"), OwnerOnlyIfPrivate("submitter")]
+
+
+    # def get_queryset(self):
+    #     return filter_private_board(self.request, Board.objects.all())
+
 drf_router = routers.DefaultRouter()
 drf_router.register(r'pins', PinViewSet, basename="pin")
+# drf_router.register(r'like', LikeViewSet, basename="like")
+drf_router.register(r'like', UserLikesViewset, base_name="userlikes")  # 点赞
 drf_router.register(r'users', UsersViewSet, basename="users")
 drf_router.register(r'images', ImageViewSet)
 drf_router.register(r'boards', BoardViewSet, basename="board")
