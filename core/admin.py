@@ -25,7 +25,7 @@ class PinAdmin(admin.ModelAdmin):
         return [a.name for a in obj.tags.all()]
 
     list_display = ('id', 'submitter', 'check', 'private', 'published', 'image_data', 'tag_name', )
-    filter_horizontal = ['likes', ]
+    # filter_horizontal = ['likes', ]
     # search_fields = ['check', 'submitter',]
     list_editable = ["check", ]
     list_filter = ["check", "submitter", ]

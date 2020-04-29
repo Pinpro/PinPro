@@ -116,7 +116,6 @@ class PinSerializer(serializers.HyperlinkedModelSerializer):
             "referer",
             "image",
             "image_by_id",
-            "likes",
             "tags",
         )
 
@@ -132,7 +131,7 @@ class PinSerializer(serializers.HyperlinkedModelSerializer):
         write_only=True,
         required=False,
     )
-    likes = LikedSerializer(read_only=True, many=True)
+    # likes = LikedSerializer(read_only=True, many=True)
 
     def create(self, validated_data):
         if 'url' not in validated_data and\
@@ -232,7 +231,7 @@ class BoardSerializer(serializers.HyperlinkedModelSerializer):
     def get_pins_detail(self, instance):
         query = instance.pins.all()
         request = self.context['request']
-        query = filter_private_pin(request, query)
+        query = filter_unchecked_and_private_pin(request, query)
         return [PinSerializer(pin, context=self.context).data for pin in query]
 
     @staticmethod
@@ -281,3 +280,12 @@ class TagAutoCompleteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
         fields = ('name', )
+
+
+# class LikeSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Pin
+#         fields = (
+#             'id',
+#             'likes',
+#         )
