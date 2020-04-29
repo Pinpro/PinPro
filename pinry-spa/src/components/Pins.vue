@@ -50,6 +50,7 @@
                             {{ item.author }}
                           </router-link>
                         </span>
+                        <span class="tag is-danger is-normal" v-show="shouldShowIsChecking(item.checking)">审核中</span>
                         <template v-if="item.tags.length > 0">
                           &nbsp;in&nbsp;
                           <template v-for="tag in item.tags">
@@ -91,6 +92,7 @@ function createImageItem(pin) {
   image.id = pin.id;
   image.owner_id = pin.submitter.id;
   image.private = pin.private;
+  image.checking = pin.check;
   image.description = pin.description;
   image.tags = pin.tags;
   image.author = pin.submitter.username;
@@ -160,6 +162,12 @@ export default {
         return false;
       }
       return this.editorMeta.currentEditId === id;
+    },
+    shouldShowIsChecking(checking) {
+      if (!this.editorMeta.user.loggedIn) {
+        return false;
+      }
+      return checking === 0;
     },
     showEditButtons(id) {
       this.editorMeta.currentEditId = id;
@@ -357,7 +365,7 @@ $avatar-height: 15px;
 .pin-card{
   .pin-preview-image {
     cursor: zoom-in;
-    border-radius: 20px 20px 0 0;
+    border-radius: 12px 12px 0 0;
     width: 100%;
   }
   > img {
@@ -380,7 +388,7 @@ $avatar-height: 15px;
   position: relative;
   top: $pin-footer-position-fix;
   background-color: white;
-  border-radius: 0 0 20px 20px ;
+  border-radius: 0 0 12px 12px ;
   box-shadow: 0 2px 0 #bbb;
   .description {
     @include description-font;
