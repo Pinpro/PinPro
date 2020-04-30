@@ -6,6 +6,7 @@ from core.serializers import PinSerializer
 
 
 class UserLikesDetailSerializer(serializers.ModelSerializer):
+    #TODO： 这里以后做一个简易的pin的序列化 没必要返回这么多信息
     pin = PinSerializer()
 
     class Meta:

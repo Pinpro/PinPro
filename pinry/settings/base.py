@@ -2,7 +2,6 @@ import os
 
 from django.contrib.messages import constants as messages
 
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Application definition
@@ -22,7 +21,7 @@ INSTALLED_APPS = [
     'django_images',
     'core',
     'users',
-    'user_operation',
+    'user_operation.apps.UserOperationConfig',  # 如果要使用app下面的app.py里面的配置，就要添加Config类
 ]
 
 AUTH_USER_MODEL = 'users.UserInfo'
@@ -96,7 +95,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tokyo'
 
 USE_I18N = True
 
