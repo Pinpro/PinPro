@@ -1,4 +1,4 @@
-# ![Pinry](https://raw.github.com/pinry/pinry/master/docs/src/imgs/logo-dark.png)
+# ![PinPro](https://github.com/Rousong/PinPro/blob/master/docs/src/imgs/logo-dark.png)
 
 The open-source core of Pinry, a tiling image board system for people
 who want to save, tag, and share images, videos and webpages in an easy
