@@ -1,41 +1,48 @@
 # ![PinPro](https://github.com/Rousong/PinPro/blob/master/docs/src/imgs/logo-dark.png)
 
-The open-source core of Pinry, a tiling image board system for people
-who want to save, tag, and share images, videos and webpages in an easy
-to skim through format.
-
-For more information ( screenshots and document ) visit [getpinry.com](https://getpinry.com).
 
 
-## Features
+PinPro使用Pinry的开源内核，提供一个为人们分享和上传贴图的系统。
+任何人都可以轻松地保存，标记和共享图像。
 
-- Image fetch and online preview
-- Tagging system for Pins
-- Browser Extensions
-- Multi-user support
-- Works well with docker
-- Both public and private boards (add @2020.02.11)
-- Search by tags / Search boards with name (add @2020.02.14)
-
-## Install with Docker
-See our full documentation at [https://docs.getpinry.com/install-with-docker/](https://docs.getpinry.com/install-with-docker/)
-
-## Requirements
-
-See our full documentation at [https://docs.getpinry.com/development/](https://docs.getpinry.com/development/)
+访问[getpinry.com](https://getpinry.com)了解更多关于原始开源项目的信息
 
 
-## Development
+## 特性
 
-See our full documentation at [https://docs.getpinry.com/development/](https://docs.getpinry.com/development/)
+- 图像获取和在线预览
+- 为图像添加标签
+- 浏览器插件
+- 提供多用户支持
+- 使用docker无痛搭建
+- 支持公开与私人收藏夹 (add @2020.02.11)
+- 通过标签/收藏夹 搜索 (add @2020.02.14)
+- 提供水印支持 (add @2020.04.23)
+- 实现图片上传后审核系统 (add @2020.04.29)
 
-## Contributors
+## 使用docker安装部署
+参考这里的完整文档 [https://docs.getpinry.com/install-with-docker/](https://docs.getpinry.com/install-with-docker/)
 
-The core contributors for Pinry have been/currently are:
+## 依赖
 
-* Isaac Bythewood <http://isaacbythewood.com/>
-* Krzysztof Klimonda <https://github.com/kklimonda>
-* Lapo Luchini <https://github.com/lapo-luchini>
-* Ji Qu <https://winkidney.com/>
+参考这里的完整文档 [https://docs.getpinry.com/development/](https://docs.getpinry.com/development/)
 
-For a full list of contributors check out the [GitHub Contributors Graph](https://github.com/pinry/pinry/graphs/contributors)
+
+## 开发
+
+参考这里的完整文档 [https://docs.getpinry.com/development/](https://docs.getpinry.com/development/)
+
+## TODO
+- [ ] 收藏功能
+- [ ] 随机看图功能
+- [ ] 根据等级或者积分翻卡功能
+- [ ] Tag墙
+- [ ] 主页添加看图模式和详情模式
+- [ ] 给用户推荐可能感兴趣的收藏夹内容或者用户
+- [ ] 个人资料页面
+- [ ] 大分类页面
+- [ ] 评论功能
+- [ ] 评论页广告区域
+- [ ] 多语言对应
+- [x] 审核功能 (add @2020.04.29)
+
