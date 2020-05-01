@@ -11,6 +11,7 @@ from rest_framework import mixins, routers
 from rest_framework.permissions import BasePermission
 from rest_framework.renderers import JSONRenderer
 from rest_framework.viewsets import GenericViewSet
+from rest_framework import viewsets
 
 from core.serializers import UserSerializer
 from users.models import UserInfo
@@ -85,5 +86,8 @@ def logout_user(request):
     return HttpResponseRedirect('/')
 
 
-drf_router = routers.DefaultRouter()
-drf_router.register(r'users', UserViewSet, base_name="user")
+class UserListViewSet(mixins.ListModelMixin, GenericViewSet):
+    queryset = UserInfo.objects.all()
+    serializer_class = UserSerializer
+    ordering = ('-id', )
+

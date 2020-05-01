@@ -131,7 +131,6 @@ class PinSerializer(serializers.HyperlinkedModelSerializer):
         write_only=True,
         required=False,
     )
-    # likes = LikedSerializer(read_only=True, many=True)
 
     def create(self, validated_data):
         if 'url' not in validated_data and\
@@ -281,11 +280,3 @@ class TagAutoCompleteSerializer(serializers.ModelSerializer):
         model = Tag
         fields = ('name', )
 
-
-# class LikeSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Pin
-#         fields = (
-#             'id',
-#             'likes',
-#         )

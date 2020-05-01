@@ -3,14 +3,17 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication
 from .models import UserLikes
 
+from core.serializers import PinSerializer
 from core.permissions import IsOwnerOrReadOnly, OwnerOnlyIfPrivate
 from .serializers import UserLikesDetailSerializer, UserLikeSerializer
+
+
 # Create your views here.
 
 
 class UserLikesViewset(viewsets.GenericViewSet, mixins.CreateModelMixin,
-                     mixins.ListModelMixin, mixins.DestroyModelMixin,
-                     mixins.RetrieveModelMixin):
+                       mixins.ListModelMixin, mixins.DestroyModelMixin,
+                       mixins.RetrieveModelMixin):
     """
     list:
         获取用户点赞列表
@@ -19,17 +22,13 @@ class UserLikesViewset(viewsets.GenericViewSet, mixins.CreateModelMixin,
     create:
         点赞
     """
-    # permission_classes = (IsAuthenticated, IsOwnerOrReadOnly)
-    permission_classes = [IsOwnerOrReadOnly("user")]
-
-    # 用get_serializer_class 设置动态的Serializer
-    # serializer_class = UserFavSerializer
-    # authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication)
+    permission_classes = [IsOwnerOrReadOnly("user"), ]
     lookup_field = "pin_id"
 
     def get_queryset(self):
         return UserLikes.objects.filter(user=self.request.user)
 
+    # 用get_serializer_class 设置动态的Serializer
     def get_serializer_class(self):
         if self.action == "list":
             return UserLikesDetailSerializer
