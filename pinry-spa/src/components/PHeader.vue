@@ -47,6 +47,11 @@
               </a>
               <div class="navbar-dropdown">
                 <router-link
+                  :to="{ name: 'userinfo', params: {username: user.meta.username} }"
+                  class="navbar-item">
+                  Userinfo
+                </router-link>
+                <router-link
                   :to="{ name: 'boards4user', params: {username: user.meta.username} }"
                   class="navbar-item">
                   Boards
