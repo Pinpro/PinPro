@@ -163,6 +163,7 @@ export default {
       }
       return this.editorMeta.currentEditId === id;
     },
+    // 是否显示审核状态标签
     shouldShowIsChecking(checking) {
       if (!this.editorMeta.user.loggedIn) {
         return false;

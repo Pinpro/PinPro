@@ -274,6 +274,28 @@ const Tag = {
     return axios.get(url);
   },
 };
+// 点赞
+function addLike(pinId) {
+  const url = `${API_PREFIX}/like/`;
+  return axios.post(url, pinId);
+}
+// 取消点赞
+function delLike(pinId) {
+  const url = `${API_PREFIX}/like/${pinId}/`;
+  return axios.delete(url);
+}
+// 获取所有点赞列表
+function getAllLikes() {
+  const url = `${API_PREFIX}/like/`;
+  return axios.get(url);
+}
+
+// 判断是否点赞
+function checkIfLike(pinId) {
+  const url = `${API_PREFIX}/like/${pinId}/`;
+  return axios.get(url);
+}
+
 
 export default {
   Tag,
@@ -283,5 +305,9 @@ export default {
   fetchPins,
   fetchPinsForBoard,
   fetchBoardForUser,
+  addLike,
+  delLike,
+  getAllLikes,
+  checkIfLike,
   User,
 };

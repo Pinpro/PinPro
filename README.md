@@ -19,6 +19,7 @@ PinPro使用Pinry的开源内核，提供一个为人们分享和上传贴图的
 - 通过标签/收藏夹 搜索 (add @2020.02.14)
 - 提供水印支持 (add @2020.04.23)
 - 实现图片上传后审核系统 (add @2020.04.29)
+- 收藏/点赞功能(add @2020.05.01)
 
 ## 使用docker安装部署
 参考这里的完整文档 [https://docs.getpinry.com/install-with-docker/](https://docs.getpinry.com/install-with-docker/)
@@ -33,7 +34,7 @@ PinPro使用Pinry的开源内核，提供一个为人们分享和上传贴图的
 参考这里的完整文档 [https://docs.getpinry.com/development/](https://docs.getpinry.com/development/)
 
 ## TODO
-- [ ] 收藏功能
+- [x] 收藏/点赞功能(add @2020.05.01)
 - [ ] 随机看图功能
 - [ ] 根据等级或者积分翻卡功能
 - [ ] Tag墙

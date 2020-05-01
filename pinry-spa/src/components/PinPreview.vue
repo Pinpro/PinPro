@@ -20,6 +20,8 @@
               <div class="media-content">
                 <div class="is-pulled-left">
                   <p class="title is-4 pin-meta-info"><span class="dim">Pinned by </span><span class="author">{{ pinItem.author }}</span></p>
+                  <div v-if="hasLiked" class="heart" @click="deleteCollect()"></div>
+                  <div v-else class="heartGrey" @click="addCollect()"></div>
                   <p class="subtitle is-6" v-show="pinItem.tags.length > 0">
                     <span class="subtitle dim">in&nbsp;</span>
                     <template v-for="tag in pinItem.tags">
@@ -60,8 +62,19 @@
 </template>
 
 <script>
+import API from './api';
+
+function initialData() {
+  return {
+    hasLiked: false,
+  };
+}
+
 export default {
   name: 'PinPreview',
+  data() {
+    return initialData();
+  },
   props: ['pinItem'],
   methods: {
     closeAndGoTo() {
@@ -70,6 +83,37 @@ export default {
         { name: 'pin', params: { pinId: this.pinItem.id } },
       );
     },
+    addCollect() { // 点赞
+      API.addLike({
+        pin: this.pinItem.id,
+      }).then((response) => {
+        console.log(response.data);
+        this.hasLiked = true;
+      }).catch((error) => {
+        console.log(error);
+      });
+    },
+    deleteCollect() {
+    // 取消点赞
+      API.delLike(this.pinItem.id).then((response) => {
+        console.log(response.data);
+        console.log(this.pinItem.id);
+        this.hasLiked = false;
+      }).catch((error) => {
+        console.log(error);
+      });
+    },
+    checkLikeFlg() {
+      API.checkIfLike(this.pinItem.id).then((response) => {
+        console.log(response.data);
+        this.hasLiked = true;
+      }).catch((error) => {
+        console.log(error);
+      });
+    },
+  },
+  created() {
+    this.checkLikeFlg();
   },
 };
 </script>
@@ -118,5 +162,88 @@ export default {
 /* preview size should always less then screen */
 .card-image img {
   width: 100%;
+}
+
+.heart{
+    position: relative;
+    width: 100px;
+    height: 90px;
+    float: left;
+}
+.heart:before,
+.heart:after{
+    position: absolute;
+    content: "";
+    left: 50px;
+    top: 0;
+    width: 50px;
+    height: 80px;
+    background: #fc2e5a;
+    -moz-border-radius: 50px 50px 0 0;
+    border-radius: 50px 50px 0 0;
+    -webkit-transform: rotate(-45deg);
+       -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+         -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+    -webkit-transform-origin: 0 100%;
+       -moz-transform-origin: 0 100%;
+        -ms-transform-origin: 0 100%;
+         -o-transform-origin: 0 100%;
+            transform-origin: 0 100%;
+}
+.heart:after{
+    left: 0;
+    -webkit-transform: rotate(45deg);
+       -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+         -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+    -webkit-transform-origin: 100% 100%;
+       -moz-transform-origin: 100% 100%;
+        -ms-transform-origin: 100% 100%;
+         -o-transform-origin: 100% 100%;
+            transform-origin :100% 100%;
+}
+.heartGrey{
+    position: relative;
+    width: 100px;
+    height: 90px;
+    float: left;
+}
+.heartGrey:before,
+.heartGrey:after{
+    position: absolute;
+    content: "";
+    left: 50px;
+    top: 0;
+    width: 50px;
+    height: 80px;
+    background: #e2e1e1;
+    -moz-border-radius: 50px 50px 0 0;
+    border-radius: 50px 50px 0 0;
+    -webkit-transform: rotate(-45deg);
+       -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+         -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+    -webkit-transform-origin: 0 100%;
+       -moz-transform-origin: 0 100%;
+        -ms-transform-origin: 0 100%;
+         -o-transform-origin: 0 100%;
+            transform-origin: 0 100%;
+}
+.heartGrey:after{
+    left: 0;
+    -webkit-transform: rotate(45deg);
+       -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+         -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+    -webkit-transform-origin: 100% 100%;
+       -moz-transform-origin: 100% 100%;
+        -ms-transform-origin: 100% 100%;
+         -o-transform-origin: 100% 100%;
+            transform-origin :100% 100%;
 }
 </style>
