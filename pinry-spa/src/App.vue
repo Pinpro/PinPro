@@ -23,7 +23,7 @@ export default {
     font-family: 'Open Sans', sans-serif;
   }
   a:link{
-    color:rgb(0, 255, 98);
+    color:rgb(2, 80, 22);
   }
   a:hover,a:active,a:visted{
     color:white;
