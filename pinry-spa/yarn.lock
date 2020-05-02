@@ -7446,11 +7446,6 @@ vue-loader@^15.7.2:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
-vue-masonry-css@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.npm.taobao.org/vue-masonry-css/download/vue-masonry-css-1.0.3.tgz#a5e7bb248570eeedcd358637d3f1f4fc7f0c5f86"
-  integrity sha1-pee7JIVw7u3NNYY30/H0/H8MX4Y=
-
 vue-masonry@^0.11.8:
   version "0.11.8"
   resolved "https://registry.npm.taobao.org/vue-masonry/download/vue-masonry-0.11.8.tgz#fc2dd458d13b557eebc68d70506af76aa6d1428e"
