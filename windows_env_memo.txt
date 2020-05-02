@@ -18,3 +18,5 @@ windows上npm yarn.ps1，因为在此系统上禁止运行脚本
 
 
 =============================================================
+.eslintrc.js
+    // 'global-require': 0,//Unexpected require() (global-require)解决vue项目使用require() 编译报错 
