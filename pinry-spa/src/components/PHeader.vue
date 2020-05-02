@@ -93,13 +93,13 @@
                   @click="signUp"
                   v-show="!user.loggedIn"
                   class="button is-primary">
-                  <strong>Sign up</strong>
+                  <strong>{{$t("pHeader.signUp")}}</strong>
                 </a>
                 <a
                   v-show="!user.loggedIn"
                   v-on:click="logIn"
                   class="button is-light">
-                  Log in
+                  {{$t("pHeader.logIn")}}
                 </a>
                 <a
                   v-show="user.loggedIn"
@@ -107,6 +107,23 @@
                   class="button is-light">
                   Log out
                 </a>
+                <div
+              class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                {{$t("pHeader.language")}}
+              </a>
+              <div class="navbar-dropdown">
+                <a @click="changeLang('zh')" class="navbar-item">
+                  中文
+                </a>
+                <a @click="changeLang('ja')" class="navbar-item">
+                  日本語
+                </a>
+                <a @click="changeLang('en')" class="navbar-item">
+                  English
+                </a>
+              </div>
+            </div>
               </div>
             </div>
           </div>
@@ -140,6 +157,9 @@ export default {
     },
   },
   methods: {
+    changeLang(lang) {
+      this.$i18n.locale = lang;
+    },
     toggleMenu() {
       this.active = !this.active;
     },
