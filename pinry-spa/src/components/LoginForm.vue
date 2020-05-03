@@ -3,39 +3,39 @@
     <div>
       <div class="modal-card" style="width: auto">
         <header class="modal-card-head">
-          <p class="modal-card-title">Login</p>
+          <p class="modal-card-title">{{$t("loginForm.login")}}</p>
         </header>
         <section class="modal-card-body">
-          <b-field label="Username"
+          <b-field  :label="$t('loginForm.username')"
                    :type="form.username.type"
                    :message="form.username.error">
             <b-input
               name="username"
               type="text"
               v-model="form.username.value"
-              placeholder="Your Username"
+              :placeholder="$t('loginForm.usernamePlaceholder')"
               maxlength="30"
               required>
             </b-input>
           </b-field>
 
-          <b-field label="Password"
+          <b-field :label="$t('loginForm.password')"
                    :type="form.password.type"
                    :message="form.password.error">
             <b-input
               type="password"
               v-model="form.password.value"
               password-reveal
-              placeholder="Your password"
+              :placeholder="$t('loginForm.passwordPlaceholder')"
               required>
             </b-input>
           </b-field>
         </section>
         <footer class="modal-card-foot">
-          <button class="button" type="button" @click="$parent.close()">Close</button>
+          <button class="button" type="button" @click="$parent.close()">{{$t("loginForm.close")}}</button>
           <button
             @click="doLogin"
-            class="button is-primary">Login</button>
+            class="button is-primary">{{$t("loginForm.login")}}</button>
         </footer>
       </div>
     </div>

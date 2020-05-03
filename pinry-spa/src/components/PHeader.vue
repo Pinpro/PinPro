@@ -18,24 +18,24 @@
         <div id="PinryNav" class="navbar-menu" :class="{ 'is-active': active}">
           <div class="navbar-start">
             <a class="navbar-item" :href="bookmarklet" :title="explanation">
-              Bookmarklet
+              {{$t("pHeader.Bookmarklet")}}
             </a>
             <div
               v-if="user.loggedIn"
               class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">
-                Create
+                {{$t("pHeader.Create")}}
               </a>
               <div class="navbar-dropdown">
                 <a
                   @click="createPin"
                   class="navbar-item">
-                  Pin
+                  {{$t("pHeader.Pin")}}
                 </a>
                 <a
                   @click="createBoard"
                   class="navbar-item">
-                  Board
+                  {{$t("pHeader.Board")}}
                 </a>
               </div>
             </div>
@@ -43,29 +43,29 @@
               v-if="user.loggedIn"
               class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">
-                My
+                {{$t("pHeader.My")}}
               </a>
               <div class="navbar-dropdown">
                 <router-link
                   :to="{ name: 'userinfo', params: {username: user.meta.username} }"
                   class="navbar-item">
-                  Userinfo
+                  {{$t("pHeader.Userinfo")}}
                 </router-link>
                 <router-link
                   :to="{ name: 'boards4user', params: {username: user.meta.username} }"
                   class="navbar-item">
-                  Boards
+                  {{$t("pHeader.Boards")}}
                 </router-link>
                 <router-link
                   :to="{ name: 'user', params: {user: user.meta.username} }"
                   class="navbar-item">
-                  Pins
+                  {{$t("pHeader.Pins")}}
                 </router-link>
               </div>
             </div>
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">
-                Browser Extensions
+                {{$t("pHeader.BrowserExtensions")}}
               </a>
               <div class="navbar-dropdown">
                 <a class="navbar-item" href="https://chrome.google.com/webstore/detail/jmhdcnmfkglikfjafdmdikoonedgijpa/">
@@ -105,7 +105,7 @@
                   v-show="user.loggedIn"
                   v-on:click="logOut"
                   class="button is-light">
-                  Log out
+                  {{$t("pHeader.logOut")}}
                 </a>
                 <div
               class="navbar-item has-dropdown is-hoverable">

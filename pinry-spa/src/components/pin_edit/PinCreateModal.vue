@@ -3,7 +3,7 @@
     <div>
       <div class="modal-card" style="width: auto">
         <header class="modal-card-head">
-          <p class="modal-card-title">{{ editorMeta.title }}</p>
+          <p class="modal-card-title">{{this.isEdit?$t('pinCreateModal.pinEdit'):$t('pinCreateModal.newPin')}}</p>
         </header>
         <section class="modal-card-body">
           <div class="columns">
@@ -15,37 +15,37 @@
               ></FileUpload>
             </div>
             <div class="column">
-              <b-field label="Image URL"
+              <b-field :label="$t('pinCreateModal.url')"
                        v-show="!disableUrlField && !isEdit"
                        :type="pinModel.form.url.type"
                        :message="pinModel.form.url.error">
                 <b-input
                   type="text"
                   v-model="pinModel.form.url.value"
-                  placeholder="where to fetch the image"
+                  :placeholder="$t('pinCreateModal.urlPlaceholder')"
                   maxlength="256"
                 >
                 </b-input>
               </b-field>
-              <b-field label="Privacy Option"
+              <b-field :label="$t('pinCreateModal.private')"
                        :type="pinModel.form.private.type"
                        :message="pinModel.form.private.error">
                 <b-checkbox v-model="pinModel.form.private.value">
-                    {{ pinModel.form.private.value?"only visible to yourself":"visible to everyone" }}
+                    {{ pinModel.form.private.value?$t('pinCreateModal.privateOn'):$t('pinCreateModal.privateOff') }}
                 </b-checkbox>
               </b-field>
-              <b-field label="Image Referer"
+              <b-field :label="$t('pinCreateModal.imageReferer')"
                        :type="pinModel.form.referer.type"
                        :message="pinModel.form.referer.error">
                 <b-input
                   type="text"
                   v-model="pinModel.form.referer.value"
-                  placeholder="where to find the pin"
+                  :placeholder="$t('pinCreateModal.imageRererPlaceholder')"
                   maxlength="256"
                 >
                 </b-input>
               </b-field>
-              <b-field label="Tags">
+              <b-field :label="$t('pinCreateModal.tags')">
                 <b-taginput
                     v-model="pinModel.form.tags.value"
                     :data="editorMeta.filteredTagOptions"
@@ -53,7 +53,7 @@
                     ellipsis
                     icon="label"
                     :allow-new="true"
-                    placeholder="Add a tag"
+                    :placeholder="$t('pinCreateModal.tagsPlaceholder')"
                     @typing="getFilteredTags">
                   <template slot-scope="props">
                     <strong>{{ props.option }}</strong>
@@ -63,13 +63,13 @@
                   </template>
                 </b-taginput>
               </b-field>
-              <b-field label="Descripton"
+              <b-field :label="$t('pinCreateModal.description')"
                        :type="pinModel.form.description.type"
                        :message="pinModel.form.description.error">
                 <b-input
                   type="textarea"
                   v-model="pinModel.form.description.value"
-                  placeholder="idea from this pin"
+                  :placeholder="$t('pinCreateModal.descriptionPlaceholder')"
                   maxlength="1024"
                 >
                 </b-input>
@@ -84,16 +84,16 @@
           </div>
         </section>
         <footer class="modal-card-foot">
-          <button class="button" type="button" @click="$parent.close()">Close</button>
+          <button class="button" type="button" @click="$parent.close()">{{$t("pinCreateModal.close")}}</button>
           <button
             v-if="!isEdit"
             @click="createPin"
-            class="button is-primary">Create Pin
+            class="button is-primary">{{$t("pinCreateModal.createPin")}}
           </button>
           <button
             v-if="isEdit"
             @click="savePin"
-            class="button is-primary">Save Changes
+            class="button is-primary">{{$t("pinCreateModal.save")}}
           </button>
         </footer>
       </div>

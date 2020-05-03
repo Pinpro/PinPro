@@ -3,60 +3,60 @@
     <div>
       <div class="modal-card" style="width: auto">
         <header class="modal-card-head">
-          <p class="modal-card-title">Sign Up</p>
+          <p class="modal-card-title">{{$t("signUpForm.signUp")}}</p>
         </header>
         <section class="modal-card-body">
-          <b-field label="Username"
+          <b-field :label="$t('signUpForm.username')"
                    :type="form.username.type"
                    :message="form.username.error">
             <b-input
               type="string"
               v-model="form.username.value"
-              placeholder="Your Username"
+              :placeholder="$t('signUpForm.usernamePlaceholder')"
               maxlength="30"
               required>
             </b-input>
           </b-field>
 
-          <b-field label="Email"
+          <b-field :label="$t('signUpForm.email')"
                    :type="form.email.type"
                    :message="form.email.error">
             <b-input
               type="email"
               v-model="form.email.value"
               password-reveal
-              placeholder="Your email"
+              :placeholder="$t('signUpForm.emailPlaceholder')"
               required>
             </b-input>
           </b-field>
-          <b-field label="Password"
+          <b-field :label="$t('signUpForm.password')"
                    :type="form.password.type"
                    :message="form.password.error">
             <b-input
               type="password"
               v-model="form.password.value"
               password-reveal
-              placeholder="Your password"
+              :placeholder="$t('signUpForm.passwordPlaceholder')"
               required>
             </b-input>
           </b-field>
-          <b-field label="Password repeat"
+          <b-field :label="$t('signUpForm.passwordRe')"
                    :type="form.password_repeat.type"
                    :message="form.password_repeat.error">
             <b-input
               type="password"
               v-model="form.password_repeat.value"
               password-reveal
-              placeholder="Your password again"
+              :placeholder="$t('signUpForm.passwordRePlaceholder')"
               required>
             </b-input>
           </b-field>
         </section>
         <footer class="modal-card-foot">
-          <button class="button" type="button" @click="$parent.close()">Close</button>
+          <button class="button" type="button" @click="$parent.close()">{{$t("signUpForm.close")}}</button>
           <button
             @click="doRegister"
-            class="button is-primary">Register</button>
+            class="button is-primary">{{$t("signUpForm.signUp")}}</button>
         </footer>
       </div>
     </div>

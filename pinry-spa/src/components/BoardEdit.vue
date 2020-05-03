@@ -3,61 +3,61 @@
     <div>
       <div class="modal-card" style="width: auto">
         <header class="modal-card-head">
-          <p class="modal-card-title">{{ UIMeta.title }}</p>
+          <p class="modal-card-title">{{this.isEdit?$t('boardEdit.boardEdit'):$t('boardEdit.boardCreate')}}</p>
         </header>
         <section class="modal-card-body">
           <div v-if="!isEdit">
-            <b-field label="Name"
+            <b-field :label="$t('boardEdit.name')"
                        :type="createModel.form.name.type"
                        :message="createModel.form.name.error">
                 <b-input
                   type="text"
                   v-model="createModel.form.name.value"
-                  placeholder="board name"
+                  :placeholder="$t('boardEdit.namePlaceholder')"
                   maxlength="128"
                   >
                 </b-input>
             </b-field>
-            <b-field label="Privacy Option"
+            <b-field :label="$t('pinCreateModal.private')"
                        :type="createModel.form.private.type"
                        :message="createModel.form.private.error">
                 <b-checkbox v-model="createModel.form.private.value">
-                    {{ createModel.form.private.value?"only visible to yourself":"visible to everyone" }}
+                    {{ createModel.form.private.value?$t('pinCreateModal.privateOn'):$t('pinCreateModal.privateOff') }}
                 </b-checkbox>
               </b-field>
           </div>
           <div v-if="isEdit">
-            <b-field label="Name"
+            <b-field :label="$t('boardEdit.name')"
                        :type="editModel.form.name.type"
                        :message="editModel.form.name.error">
                 <b-input
                   type="text"
                   v-model="editModel.form.name.value"
-                  placeholder="board name"
+                  :placeholder="$t('boardEdit.namePlaceholder')"
                   maxlength="128"
                   >
                 </b-input>
             </b-field>
-            <b-field label="Privacy Option"
+            <b-field :label="$t('pinCreateModal.private')"
                        :type="editModel.form.private.type"
                        :message="editModel.form.private.error">
                 <b-checkbox v-model="editModel.form.private.value">
-                    {{ editModel.form.private.value?"only visible to yourself":"visible to everyone" }}
+                    {{ editModel.form.private.value?$t('pinCreateModal.privateOn'):$t('pinCreateModal.privateOff') }}
                 </b-checkbox>
               </b-field>
           </div>
         </section>
         <footer class="modal-card-foot">
-          <button class="button" type="button" @click="$parent.close()">Close</button>
+          <button class="button" type="button" @click="$parent.close()">{{$t("pinCreateModal.close")}}</button>
           <button
             v-if="!isEdit"
             @click="createBoard"
-            class="button is-primary">Create Board
+            class="button is-primary">{{$t("boardEdit.createBoard")}}
           </button>
           <button
             v-if="isEdit"
             @click="saveBoardChanges"
-            class="button is-primary">Save Changes
+            class="button is-primary">{{$t("pinCreateModal.save")}}
           </button>
         </footer>
       </div>

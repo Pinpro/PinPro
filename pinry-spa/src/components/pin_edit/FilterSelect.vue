@@ -1,12 +1,12 @@
 <template>
   <div class="filter-select">
-    <b-field label="Select Board"
+    <b-field :label="$t('filterSelect.board')"
              :type="form.name.type"
              :message="form.name.error">
       <b-input
         type="text"
         v-model="form.name.value"
-        placeholder="Type to filter or Create one"
+        :placeholder="$t('filterSelect.boardPlaceholder')"
         maxlength="128"
       >
       </b-input>
@@ -15,7 +15,7 @@
       <button
         @click="createNewBoard"
         class="button is-primary">
-        Create New Board
+        {{$t("filterSelect.createNewBoard")}}
       </button>
     </b-field>
     <b-field>
