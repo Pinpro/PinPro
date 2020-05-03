@@ -56,12 +56,12 @@ module.exports = {
     createBoard: '创建',
   },
   loginForm: {
-    login: '创建分类',
-    username: '创建分类',
-    usernamePlaceholder: '创建分类',
-    password: '编辑分类',
-    passwordPlaceholder: '编辑分类',
-    close: '名称',
+    login: '登陆',
+    username: '用户名',
+    usernamePlaceholder: '填写您的用户名',
+    password: '密码',
+    passwordPlaceholder: '填写您的密码',
+    close: '关闭',
   },
   signUpForm: {
     signUp: '注册',
