@@ -63,10 +63,12 @@
 
 <script>
 import API from './api';
+import modals from './modals';
 
 function initialData() {
   return {
     hasLiked: false,
+    userLoggedIn: false,
   };
 }
 
@@ -75,7 +77,7 @@ export default {
   data() {
     return initialData();
   },
-  props: ['pinItem'],
+  props: ['pinItem', 'loggedIn'],
   methods: {
     closeAndGoTo() {
       this.$parent.close();
@@ -84,6 +86,9 @@ export default {
       );
     },
     addCollect() { // 点赞
+      if (!this.loggedIn) {
+        modals.openLogin(this, this.onLoginSucceed);
+      }
       API.addLike({
         pin: this.pinItem.id,
       }).then((response) => {
@@ -113,7 +118,9 @@ export default {
     },
   },
   created() {
-    this.checkLikeFlg();
+    if (this.loggedIn) {
+      this.checkLikeFlg();
+    }
   },
 };
 </script>

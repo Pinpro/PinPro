@@ -30,7 +30,7 @@
                   ></EditorUI>
                   <img :src="item.url"
                      @load="onPinImageLoaded(item.id)"
-                     @click="openPreview(item)"
+                     @click="openPreview(item, editorMeta.user.loggedIn)"
                      alt="item.description"
                      :style="item.style"
                      class="pin-preview-image">
@@ -205,13 +205,14 @@ export default {
       );
       return blocks;
     },
-    openPreview(pinItem) {
+    openPreview(pinItem, loggedIn) {
       this.$buefy.modal.open(
         {
           parent: this,
           component: PinPreview,
           props: {
             pinItem,
+            loggedIn,
           },
           scroll: 'keep',
           customClass: 'pin-preview-at-home',
