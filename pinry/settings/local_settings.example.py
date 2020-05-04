@@ -35,7 +35,7 @@ IMAGE_AUTO_DELETE = True
 
 # thumbnail size control
 IMAGE_SIZES = {
-    'thumbnail': {'size': [240, 0]},
+    'thumbnail': {'size': [400, 0]},
     'standard': {'size': [600, 0]},
     'square': {'crop': True, 'size': [125, 125]},
 }
