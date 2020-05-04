@@ -1,0 +1,16 @@
+把PinPro改成pinry（暂时）
+
+build之前先更改docker目录下的文件权限
+
+build之后启动容器
+
+sudo docker ps 查看容器id
+
+输入 sudo docker exec -it 容器id bash  
+进入容器
+
+cd 到pinry目录下
+
+python manage.py createsuperuser  来创建管理员用户
+
+地址/admin 进入后台
