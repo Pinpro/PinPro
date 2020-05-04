@@ -145,7 +145,7 @@ IMAGE_SIZES = {
 FONT_PATH = os.path.join(BASE_DIR, 'pinry/static/font/good times rg.ttf')
 
 # Change the domain to your own site.
-DOMAIN = "www.2zzy.com"
+DOMAIN = "pinpro.xyz"
 
 # Enable watermark or not. Default is False
 WATER_MARK = True
