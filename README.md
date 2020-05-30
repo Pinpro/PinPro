@@ -1,12 +1,13 @@
 # ![PinPro](https://github.com/Rousong/PinPro/blob/master/docs/src/imgs/logo-dark.png)
-
+[![simpleui](https://img.shields.io/badge/developing%20with-Simpleui-2077ff.svg)](https://github.com/newpanjing/simpleui)
 
 
 PinPro使用Pinry的开源内核，提供一个为人们分享和上传贴图的系统。
 任何人都可以轻松地保存，标记和共享图像。
 
 访问[getpinry.com](https://getpinry.com)了解更多关于原始开源项目的信息
-
+DEMO：[bizhi.art](https://bizhi.art)  [pinpro.xyz](https://pinpro.xyz)
+      
 
 ## 特性
 
